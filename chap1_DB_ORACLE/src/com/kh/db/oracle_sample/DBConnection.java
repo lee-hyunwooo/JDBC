@@ -15,14 +15,18 @@ public class DBConnection {
 		//selectBank();
 		//selectKhcafe();
 		//selectIf();
-		pr();
+		//pr();
+		//pr2();
+		pr3();
+		
+		
 	}
 			
 	static void selectBank() {
 		//1. 드라이버 연결 : Oracle JDBC 드라이버 클래스 이름
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		//2. 오라클 내 컴퓨터 연결 : 데이터 베이스 연결 정보
-		//                               나의 IP주소:포트번호:SID
+		//thin이 드라이버의 역할을 함          나의 IP주소:포트번호:SID
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "khbank";
 		String password = "kh1234";
@@ -178,5 +182,85 @@ public class DBConnection {
 		}
 		
 		
+	}
+
+	static void pr2() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khbank";
+		String password = "kh1234";
+		Connection con = null;
+		try {
+			//연결을 사용하여 쿼리 실행 또는 데이터베이스 작업 수행
+			con = DriverManager.getConnection(url, user, password);
+			
+			System.out.println("데이터 베이스 연결 성공!");
+			//SELECT 쿼리
+			//String selectQuery = "SELECT * FROM BANK WHERE account_number in(?,?)";
+			//                                                                 (?)갯수만큼 검색가능하며, 검색된 갯수만큼 출력됌
+			String selectQuery = "SELECT * FROM BANK WHERE account_name in (?,?,?)";
+			PreparedStatement selectState = con.prepareStatement(selectQuery);
+			String[] targerAN = {"가나다","김영희","이동훈"};
+			selectState.setString(1, targerAN[0]); //(출력순서, 인덱스값)
+			selectState.setString(2, targerAN[1]);
+			selectState.setString(3, targerAN[2]);
+			ResultSet result = selectState.executeQuery();
+			 //result.next() : result 객체에서 다음 행(row)으로 이동
+			//다음행이 있으면 true 반환, 그렇지 않으면 false 반환
+			while(result.next()) {
+				//khbank에 있는 bank 테이블 결과집합에서 account_id를 가져옴
+				int accountID = result.getInt("account_id");
+				//1.함께해보기 : accountNumber
+				long accountNumber = result.getLong("account_number");
+				String accountName = result.getString("account_name");
+				double balance = result.getDouble("balance");
+				//2.함께해보기 : branchName
+				String branchName = result.getString("branch_name");
+				//java.sql import Date lastTransactionDate가져오기
+				Date lastTransactionDate = result.getDate("last_transaction_date");
+				System.out.println("ID : " + accountID + ", NAME : " + accountName + ", balance : " + balance + ", account_number : " + accountNumber + ", branch_Name : " + branchName+ ", lastTransctionDate : " + lastTransactionDate);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	static void pr3() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khcafe";
+		String password = "kh1234";
+		Connection con = null;
+		
+		try {
+			con = DriverManager.getConnection(url, user, password);
+			System.out.println("연결성공");
+			
+			String selectQurty = "SELECT * FROM CAFES WHERE operating_hours in (?,?)";
+			PreparedStatement selectState = con.prepareStatement(selectQurty);
+			
+			String[] targethours = {"매일: 07:00-20:30", "매일: 09:30-20:00"};
+			selectState.setString(1, targethours[0]);
+			selectState.setString(2, targethours[1]);
+			
+			ResultSet result = selectState.executeQuery();
+			while(result.next()) {
+				//khbank에 있는 bank 테이블 결과집합에서 account_id를 가져옴
+				int CAFEID = result.getInt("CAFE_ID");
+				//1.함께해보기 : accountNumber
+				String CNAME = result.getString("CNAME");
+				String address = result.getString("address");
+				String PhoneNumber = result.getString("PHONE_NUMBER");
+				//2.함께해보기 : branchName
+				String operating_hours = result.getString("operating_hours");
+				System.out.println("ID : " + CAFEID + ", NAME : " + CNAME + ", address : " + address + ", PHONE_NUMBER : " + PhoneNumber + ", operating_hours : " + operating_hours);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
