@@ -14,7 +14,8 @@ public class DBConnection {
 	public static void main(String[] args) {
 		//selectBank();
 		//selectKhcafe();
-		selectIf();
+		//selectIf();
+		pr();
 	}
 			
 	static void selectBank() {
@@ -37,6 +38,11 @@ public class DBConnection {
 			ResultSet result = selectState.executeQuery();
 			 //result.next() : result 객체에서 다음 행(row)으로 이동
 			//다음행이 있으면 true 반환, 그렇지 않으면 false 반환
+			
+			//값 존재 여부
+			if(!result.isBeforeFirst()) {
+				System.out.println("존재하는 데이터가 없습니다.");
+			}
 			while(result.next()) {
 				//khbank에 있는 bank 테이블 결과집합에서 account_id를 가져옴
 				int accountID = result.getInt("account_id");
@@ -129,5 +135,48 @@ public class DBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	static void pr() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khbank";
+		String password = "kh1234";
+		Connection con = null;
+		try {
+			//연결을 사용하여 쿼리 실행 또는 데이터베이스 작업 수행
+			con = DriverManager.getConnection(url, user, password);
+			
+			System.out.println("데이터 베이스 연결 성공!");
+			
+			//SELECT 쿼리
+			//String selectQuery = "SELECT * FROM BANK WHERE account_number in(?,?)";
+			String selectQuery = "SELECT * FROM BANK WHERE account_number in (?,?,?)";
+			PreparedStatement selectState = con.prepareStatement(selectQuery);
+			String[] targerAN = {"1234567890","1236777888","5555666777"};
+			selectState.setString(1, targerAN[0]); //(출력순서, 인덱스값)
+			selectState.setString(2, targerAN[1]);
+			selectState.setString(3, targerAN[2]);
+			ResultSet result = selectState.executeQuery();
+			 //result.next() : result 객체에서 다음 행(row)으로 이동
+			//다음행이 있으면 true 반환, 그렇지 않으면 false 반환
+			while(result.next()) {
+				//khbank에 있는 bank 테이블 결과집합에서 account_id를 가져옴
+				int accountID = result.getInt("account_id");
+				//1.함께해보기 : accountNumber
+				long accountNumber = result.getLong("account_number");
+				String accountName = result.getString("account_name");
+				double balance = result.getDouble("balance");
+				//2.함께해보기 : branchName
+				String branchName = result.getString("branch_name");
+				//java.sql import Date lastTransactionDate가져오기
+				Date lastTransactionDate = result.getDate("last_transaction_date");
+				System.out.println("ID : " + accountID + ", NAME : " + accountName + ", balance : " + balance + ", account_number : " + accountNumber + ", branch_Name : " + branchName+ ", lastTransctionDate : " + lastTransactionDate);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
