@@ -9,7 +9,11 @@ import java.sql.Date;
 public class DBConnection {
 
 	public static void main(String[] args) {
-		
+		//selectBank();
+		selectKhcafe();
+	}
+			
+		static void selectBank() {
 		//1. 드라이버 연결 : Oracle JDBC 드라이버 클래스 이름
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		//2. 오라클 내 컴퓨터 연결 : 데이터 베이스 연결 정보
@@ -38,7 +42,7 @@ public class DBConnection {
 				double balance = result.getDouble("balance");
 				//2.함께해보기 : branchName
 				String branchName = result.getString("branch_name");
-				//java.sql import Date lastTransctionDate가져오기
+				//java.sql import Date lastTransactionDate가져오기
 				Date lastTransactionDate = result.getDate("last_transaction_date");
 				System.out.println("ID : " + accountID + ", NAME : " + accountName + ", balance : " + balance + ", account_number : " + accountNumber + ", branch_Name : " + branchName+ ", lastTransctionDate : " + lastTransactionDate);
 			}
@@ -50,4 +54,39 @@ public class DBConnection {
 		
 	}
 
+		static void selectKhcafe() {
+			//1. 드라이버 연결 : Oracle JDBC 드라이버 클래스 이름
+			String driver = "oracle.jdbc.driver.OracleDriver";
+			//2. 오라클 내 컴퓨터 연결 : 데이터 베이스 연결 정보
+			//                               나의 IP주소:포트번호:SID
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String user = "khcafe";
+			String password = "kh1234";
+			Connection con = null;
+			try {
+				con = DriverManager.getConnection(url, user, password);
+				System.out.println("데이터 베이스 연결 성공!");
+				//SELECT 쿼리
+				//select * from menu 작성해서 menu table 가져오기
+				String selectQuery = "select * from menu";
+				PreparedStatement selectState = con.prepareStatement(selectQuery);
+				ResultSet result = selectState.executeQuery();
+				 //result.next() : result 객체에서 다음 행(row)으로 이동
+				//다음행이 있으면 true 반환, 그렇지 않으면 false 반환
+				while(result.next()) {
+				int menuID = result.getInt("menu_id");
+				int cafeID = result.getInt("cafe_id");
+				String mName = result.getString("Mname");
+				double price = result.getDouble("price");
+				String description = result.getString("description");
+				System.out.println("menu_id : " + menuID + ", cafe_id : " + cafeID + ", Mname : " + mName + ", price : " + price + ", description : " + description);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
 }
