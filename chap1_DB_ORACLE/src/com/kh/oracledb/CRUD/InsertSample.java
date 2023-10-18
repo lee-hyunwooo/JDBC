@@ -1,4 +1,4 @@
-package com.kh.db.oracle_sample;
+package com.kh.oracledb.CRUD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import oracle.sql.DATE;
 
 import java.sql.Date;
-public class DBConnection {
+public class InsertSample {
 
 	public static void main(String[] args) {
 		//selectBank();
@@ -17,9 +17,11 @@ public class DBConnection {
 		//selectIf();
 		//pr();
 		//pr2();
-		pr3();
-		
-		
+		//pr3();
+		//insertBank();
+		//insertKhcafe();
+		insertKhcafe4();
+	
 	}
 			
 	static void selectBank() {
@@ -262,5 +264,141 @@ public class DBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	static void insertBank() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khbank";
+		String password = "kh1234";
+		try {
+			Connection con = DriverManager.getConnection(url, user, password);
+			String inserQuery = "INSERT INTO BANK (account_id, account_number, account_name, balance, branch_name, last_transaction_date)"
+								+ "VALUES (?, ?, ?, ?, ?, ?)";
+			PreparedStatement insertState = con.prepareStatement(inserQuery);
+			insertState.setInt(1, 14);
+			insertState.setString(2, "16533219");
+			insertState.setString(3, "사아자");
+			insertState.setDouble(4, 1500.00);
+			insertState.setString(5,  "kh");
+			insertState.setDate(6, Date.valueOf("2023-10-16"));
+			
+			int rowsInsert = insertState.executeUpdate();
+			System.out.println(rowsInsert + "row 추가됨");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	static void insertKhcafe() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khcafe";
+		String password = "kh1234";
+		
+		try {
+			Connection con = DriverManager.getConnection(url, user, password);
+			//insert문 작성해보기
+			String insertQuery = "INSERT INTO CAFES (CAFE_ID, CNAME, ADDRESS, PHONE_NUMBER, OPERATING_HOURS)"
+								+ "VALUES (?, ?, ?, ?, ?)";
+			
+			PreparedStatement insertState = con.prepareStatement(insertQuery);
+			insertState.setInt(1, 41);
+			insertState.setString(2, "커피청");
+			insertState.setString(3, "서울시 은평구 연서로 11");
+			insertState.setString(4, "000-888-7777");
+			insertState.setString(5, "매일 : 09:00-20:30");
+			
+			int rowsInsert = insertState.executeUpdate();
+			System.out.println(rowsInsert + "row 추가됌");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	static void insertKhcafe2() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khcafe";
+		String password = "kh1234";
+		
+		try {
+			Connection con = DriverManager.getConnection(url, user, password);
+			String insertQuery = "INSERT INTO MENU (MENU_ID, CAFE_ID, MNAME, PRICE, DESCRIPTION)"
+								+ "VALUES (?, ?, ?, ?, ?)";
+			PreparedStatement insertState = con.prepareStatement(insertQuery);
+			insertState.setInt(1, 27);
+			insertState.setInt(2, 14);
+			insertState.setString(3, "토피넛라떼");
+			insertState.setDouble(4, 3.80);
+			insertState.setString(5, "고소한 풍미의 라떼");
+			
+			int rowsInsert = insertState.executeUpdate();
+			System.out.println(rowsInsert + "row 추가됌");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	static void insertKhcafe3() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khcafe";
+		String password = "kh1234";
+		
+		try {
+			Connection con = DriverManager.getConnection(url, user, password);
+			String insertQuery = "INSERT INTO MENU (MENU_ID, CAFE_ID, MNAME, PRICE, DESCRIPTION)"
+									+ "VALUES (?,?,?,?,?)";
+			PreparedStatement insertState = con.prepareStatement(insertQuery);
+			
+			insertState.setInt(1, 28);
+			insertState.setInt(2, 12);
+			insertState.setString(3, "아포가토");
+			insertState.setDouble(4, 5.30);
+			insertState.setString(5, "부드러운 아이스크림이 올라간 커피");
+			
+			int rowsinto = insertState.executeUpdate();
+			System.out.println(rowsinto + "row 생성됌");
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	static void insertKhcafe4() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khcafe";
+		String password = "kh1234";
+		
+		try {
+			Connection con =DriverManager.getConnection(url, user, password);
+			
+			String insertQuery = "INSERT INTO MENU (MENU_ID, CAFE_ID, MNAME, PRICE, DESCRIPTION)"
+								+ "VALUES (?,?,?,?,?)";
+			PreparedStatement insertState = con.prepareStatement(insertQuery);
+			insertState.setInt(1, 29);
+			insertState.setInt(2, 16);
+			insertState.setString(3, "아인슈페너");
+			insertState.setDouble(4, 4.8);
+			insertState.setString(5, "부드러운 크림이 올라간 커피");
+			
+			int rowsinsert = insertState.executeUpdate();
+			System.out.println(rowsinsert + "row 생성됌");
+		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
