@@ -13,7 +13,7 @@ public class cafeView {
 
 	public void addCafeName() {
 		Scanner sc = new Scanner(System.in);
-		//CNAME, ADDRESS,PHONE_NUMBER,OPERATING_HOURS
+		//NAME, ADDRESS,PHONE_NUMBER,OPERATING_HOURS
 		System.out.println("카페 정보를 입력하세요.");
 		System.out.println("상호명 : ");
 		
