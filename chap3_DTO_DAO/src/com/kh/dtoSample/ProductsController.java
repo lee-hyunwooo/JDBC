@@ -7,18 +7,18 @@ import java.util.List;
 
 public class ProductsController {
 	//필드
-	private ProductsModel model; //모델 멤버변수
-	private ProductsView view;	//뷰 멤버변수
+	private ProductsModel productmodel; //모델 멤버변수
+	private ProductsView productview;	//뷰 멤버변수
 
 	//파라미터를 작성한 생성자
 	public ProductsController(Connection con, ProductsView view) {
-		this.model = new ProductsModel(con);
-		this.view = view;
+		this.productmodel = new ProductsModel(con);
+		this.productview = view;
 	}
 	
 	//출력메서드
 	public void displayAllProducts() {
-		List<ProductsDTO> products = model.getProducts();
-		view.displayProducts(products);
+		List<ProductsDTO> products = productmodel.getProducts();
+		productview.displayProducts(products);
 	}
 }

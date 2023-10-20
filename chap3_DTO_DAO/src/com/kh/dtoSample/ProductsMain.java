@@ -8,12 +8,12 @@ public class ProductsMain {
 
 	public static void main(String[] args) {
 
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String jdbc_oracle_url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String username = "khcafe";
 		String passwore = "kh1234";
 		
 		try {
-			Connection con = DriverManager.getConnection(url, username, passwore);
+			Connection con = DriverManager.getConnection(jdbc_oracle_url, username, passwore);
 			//인스턴스 생성하여 뷰 초기화
 			ProductsView view = new ProductsView();
 			

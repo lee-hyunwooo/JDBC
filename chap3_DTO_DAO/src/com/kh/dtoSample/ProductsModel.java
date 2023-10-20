@@ -20,8 +20,9 @@ public class ProductsModel {
 		try {
 			PreparedStatement st = connection.prepareStatement(query);
 			ResultSet result = st.executeQuery();
+			//if 는 selectOne, while은 selectAll
 			while(result.next()) {
-				ProductsDTO product = new ProductsDTO();
+				ProductsDTO product = new ProductsDTO(); //인스턴스 생성
 				product.setProductId(result.getInt("product_Id"));
 				product.setProductName(result.getString("Product_Name"));
 				product.setCategory(result.getString("category"));
