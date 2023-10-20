@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import com.kh.ControllerSample.ProductController;
-import com.kh.viewSample.ProductView;
+import com.kh.MVC.Singleton.Product.ProductView;
 
 public class ProductMain {
 

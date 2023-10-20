@@ -3,9 +3,9 @@ package com.kh.ControllerSample;
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.MVC.Singleton.Product.ProductView;
 import com.kh.dtoSample.ProductDTO;
 import com.kh.modelSample.ProductModel;
-import com.kh.viewSample.ProductView;
 
 //모델과 뷰를 연결해주는 중간다리
 

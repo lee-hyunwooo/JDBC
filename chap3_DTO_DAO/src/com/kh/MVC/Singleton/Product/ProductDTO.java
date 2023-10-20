@@ -1,4 +1,4 @@
-package com.kh.dtoSample;
+package com.kh.MVC.Singleton.Product;
 
 public class ProductDTO {
 	//model sql 열 형식에 맞춰 데이터를 캡슐화하고 getter setter를 활용하여 데이터를 저정하고 내보내는 공간

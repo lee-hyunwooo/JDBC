@@ -1,4 +1,4 @@
-package com.kh.viewSample;
+package com.kh.MVC.Singleton.Product;
 
 import java.sql.SQLException;
 import java.util.List;

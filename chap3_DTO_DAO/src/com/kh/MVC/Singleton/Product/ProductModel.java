@@ -1,4 +1,4 @@
-package com.kh.modelSample;
+package com.kh.MVC.Singleton.Product;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -62,7 +62,7 @@ public class ProductModel {
 	public static ProductModel getInstance() throws SQLException {
 		if(productmodel == null) {
 			productmodel = new ProductModel();
-			connection = DriverManager.getConnection(DB_URL, ID, DB_URL);
+			connection = DriverManager.getConnection(DB_URL, ID, PW);
 		}
 		return productmodel;
 	}
