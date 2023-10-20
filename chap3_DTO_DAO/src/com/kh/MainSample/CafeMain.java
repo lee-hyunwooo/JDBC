@@ -1,8 +1,11 @@
-package com.kh.dtoSample;
+package com.kh.MainSample;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.kh.ControllerSample.CafeController;
+import com.kh.viewSample.CafeView;
 
 public class CafeMain {
 

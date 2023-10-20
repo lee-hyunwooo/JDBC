@@ -1,7 +1,11 @@
-package com.kh.dtoSample;
+package com.kh.ControllerSample;
 
 import java.sql.Connection;
 import java.util.List;
+
+import com.kh.dtoSample.CafeDTO;
+import com.kh.modelSample.CafeModel;
+import com.kh.viewSample.CafeView;
 
 //model과 view를 연결해주는 중간 다리
 

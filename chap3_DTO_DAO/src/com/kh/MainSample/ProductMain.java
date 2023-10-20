@@ -1,10 +1,13 @@
-package com.kh.dtoSample;
+package com.kh.MainSample;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ProductsMain {
+import com.kh.ControllerSample.ProductController;
+import com.kh.viewSample.ProductView;
+
+public class ProductMain {
 
 	public static void main(String[] args) {
 
@@ -15,10 +18,10 @@ public class ProductsMain {
 		try {
 			Connection con = DriverManager.getConnection(jdbc_oracle_url, username, passwore);
 			//인스턴스 생성하여 뷰 초기화
-			ProductsView view = new ProductsView();
+			ProductView view = new ProductView();
 			
 			//인스턴스 생성하여 컨트롤러 초기화
-			ProductsController controller = new ProductsController(con,view);
+			ProductController controller = new ProductController(con,view);
 			
 			//카페 정보 표시하는 메서드 가져오기
 			controller.displayAllProducts();

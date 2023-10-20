@@ -1,6 +1,6 @@
 package com.kh.dtoSample;
 
-public class ProductsDTO {
+public class ProductDTO {
 	//model sql 열 형식에 맞춰 데이터를 캡슐화하고 getter setter를 활용하여 데이터를 저정하고 내보내는 공간
 
 	//필드 멤버변수 작성
@@ -12,12 +12,12 @@ public class ProductsDTO {
 	
 	//생성자
 	//1. 기본 생성자
-	public ProductsDTO() {
-		
+	public ProductDTO() {
+		 
 	}
 	
 	//2파라미터 값을 받을 생성자
-	public ProductsDTO(int productId, String productName, String category, double price, int stockQuantity) {
+	public ProductDTO(int productId, String productName, String category, double price, int stockQuantity) {
 		this.productId = productId;
 		this.productName = productName;
 		this.category = category;

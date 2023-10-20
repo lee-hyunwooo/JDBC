@@ -1,6 +1,8 @@
-package com.kh.dtoSample;
+package com.kh.viewSample;
 
 import java.util.List;
+
+import com.kh.dtoSample.CafeDTO;
 
 public class CafeView {
 	//view에는 주로 void 메서드를 사용한다.

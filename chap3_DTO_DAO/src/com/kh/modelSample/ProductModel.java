@@ -1,4 +1,4 @@
-package com.kh.dtoSample;
+package com.kh.modelSample;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,22 +7,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductsModel {
+import com.kh.dtoSample.ProductDTO;
+
+public class ProductModel {
 	private Connection connection;
 	
-	public ProductsModel(Connection connection) {
+	public ProductModel(Connection connection) {
 		this.connection = connection;
 	}
 	
-	public List<ProductsDTO> getProducts() {
-		List<ProductsDTO> products = new ArrayList<>();
+	public List<ProductDTO> getProducts() {
+		List<ProductDTO> products = new ArrayList<>();
 		String query = "SELECT * FROM products";
 		try {
 			PreparedStatement st = connection.prepareStatement(query);
 			ResultSet result = st.executeQuery();
 			//if 는 selectOne, while은 selectAll
 			while(result.next()) {
-				ProductsDTO product = new ProductsDTO(); //인스턴스 생성
+				ProductDTO product = new ProductDTO(); //인스턴스 생성
 				product.setProductId(result.getInt("product_Id"));
 				product.setProductName(result.getString("Product_Name"));
 				product.setCategory(result.getString("category"));
