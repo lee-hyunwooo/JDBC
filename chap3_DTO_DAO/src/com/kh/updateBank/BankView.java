@@ -29,8 +29,8 @@ public class BankView {
 		}else {
 			System.out.println("수정이 실패했습니다.");
 		}
+		//닫는 순서 1. 결과 집합 닫기(ResultSet) 2. sql연결 닫기 (PreparedStatement) 3. sql 닫기(Connection) 4.Scanner
 		sc.close();
-	
 	
 	}
 	

@@ -12,7 +12,7 @@ public class CafeDTO {
 	private String operatingHours;
 	
 	//생성자
-	//1. 기본 생성자
+	//1. 기본 생성자  //SELECT 사용시 model에 있는 List를 기능하기 위해 필요
 	public CafeDTO() {
 		
 	}
