@@ -64,7 +64,8 @@ public class cafeView {
 		int cafe_id = sc.nextInt();
 		
 		System.out.print("변경하실 운영시간을 입력해주세요.");
-		String operationg_hours = sc.next();//next(), nextInt()는 버퍼가 존재함 nextline 사용시 그 외의 기능 사용 x
+		String operationg_hours = sc.next();//next(), nextInt()는 버퍼가 존재함
+											//println과 nextLine은 둘다 엔터기능이 존재하여 자동으로 넘어감
 		
 		sc.close();
 		model.UpdateCafe(operationg_hours, cafe_id);
